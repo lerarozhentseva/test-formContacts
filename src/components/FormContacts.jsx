@@ -85,14 +85,23 @@ export default function FormContacts() {
           comments: data.comments,
         });
         handleFormReset();
-      })
-      .finally(() => {
         setIsLoading(false);
         setFormValid(false);
         setTimeout(
           () =>
             alert(
               "Ваши данные успешно отправились! Наши специалисты свяжутся с Вами в ближайшее время."
+            ),
+          1000
+        );
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setFormValid(false);
+        setTimeout(
+          () =>
+            alert(
+              "Ваши данные не отправились. Произошла ошибка на сервере. Приносим свои извинения!"
             ),
           1000
         );
@@ -129,6 +138,7 @@ export default function FormContacts() {
       <TextField
         label="Ваше имя"
         value={name}
+        data-testid="name"
         name="name"
         type="text"
         onBlur={(e) => blurHandler(e)}
@@ -136,20 +146,29 @@ export default function FormContacts() {
         sx={{ bgcolor: "primary.light", borderRadius: "5px", m: "15px 0 0 0" }}
       />
       {nameClick && nameError && (
-        <Typography sx={{ fontSize: "15px", m: 0 }} color="error">
+        <Typography
+          data-testid="nameerror"
+          sx={{ fontSize: "15px", m: 0 }}
+          color="error"
+        >
           {nameError}
         </Typography>
       )}
       <TextField
         label="Ваш электронный адрес"
         value={email}
+        data-testid="email"
         name="email"
         onBlur={(e) => blurHandler(e)}
         onChange={(e) => emailHandler(e)}
         sx={{ bgcolor: "primary.light", borderRadius: "5px", m: "15px 0 0 0" }}
       />
       {emailClick && emailError && (
-        <Typography sx={{ fontSize: "15px", m: 0 }} color="error">
+        <Typography
+          data-testid="emailerror"
+          sx={{ fontSize: "15px", m: 0 }}
+          color="error"
+        >
           {emailError}
         </Typography>
       )}

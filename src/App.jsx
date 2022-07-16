@@ -1,5 +1,5 @@
 import { ThemeProvider, Box } from "@mui/material";
-import Form from "./components/Form";
+import FormContacts from "./components/FormContacts";
 import Information from "./components/Information";
 import theme from "./theme";
 
@@ -15,7 +15,7 @@ function App() {
         }}
         bgcolor="secondary.main"
       >
-        <Form />
+        <FormContacts />
         <Information />
       </Box>
     </ThemeProvider>
